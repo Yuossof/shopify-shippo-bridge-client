@@ -1,152 +1,39 @@
 "use client"
 
-import { useState } from "react"
-import {
-  Users,
-  Settings,
-  Shuffle,
-  Sparkles,
-  Zap,
-  HelpCircle,
-  Download,
-  Trash2,
-  Sun,
-  Moon,
-  ChevronsUpDown,
-  Package,
-  MapPinHouse,
-  Truck,
-  PackageCheck,
-} from "lucide-react"
-import { Link } from "react-router-dom";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupLabel,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuBadge,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarRail,
-} from "@/components/ui/sidebar"
+import { useTheme } from "@/hooks/use-theme"
+import { ChevronsUpDown, CircleHelp, MapPin, Moon, Package, PackageCheck, Settings, Sun, Truck, Zap } from "lucide-react"
+import { Link } from "react-router-dom"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuBadge, SidebarMenuButton, SidebarMenuItem, SidebarRail } from "@/components/ui/sidebar"
+
+const primaryNav = [
+  { label: "Orders", href: "/orders", icon: Package, badge: "16" },
+  { label: "Shipments", href: "/shipments", icon: Truck },
+  { label: "Ready to pick", href: "/pickup", icon: PackageCheck, badge: "16" },
+  { label: "Addresses", href: "/addresses", icon: MapPin },
+]
 
 export function AppSidebar() {
-  const [isDark, setIsDark] = useState(false)
+  const { theme, setTheme } = useTheme()
+  const isDark = theme === "dark"
 
   return (
     <Sidebar collapsible="offcanvas" side="left">
-      {/* Header */}
-      <SidebarHeader>
-        <div className="flex items-center justify-between gap-2">
-          <button className="flex min-w-0 items-center gap-2 rounded-lg py-1 pl-0.5 pr-1.5 hover:bg-muted">
-            <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-primary text-[11px] font-semibold text-primary-foreground">
-              A
-            </div>
-            <span className="truncate text-sm font-medium text-foreground">
-              App name
-            </span>
-            <ChevronsUpDown className="h-3.5 w-3.5 shrink-0 text-muted-foreground" strokeWidth={1.5} />
-          </button>
-
-          <div className="flex shrink-0 items-center gap-0.5">
-            <button
-              onClick={() => setIsDark((v) => !v)}
-              className="inline-flex h-7 w-7 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-              aria-label="Toggle theme"
-            >
-              {isDark ? (
-                <Moon className="h-4 w-4" strokeWidth={1.5} />
-              ) : (
-                <Sun className="h-4 w-4" strokeWidth={1.5} />
-              )}
-            </button>
-            <button
-              className="inline-flex h-7 w-7 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-              aria-label="Settings"
-            >
-              <Settings className="h-4 w-4" strokeWidth={1.5} />
-            </button>
-          </div>
+      <SidebarHeader className="border-b">
+        <div className="flex items-center justify-between gap-2 px-2 py-1">
+          <Link to="/" className="flex min-w-0 items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+            <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-primary text-sm font-bold text-primary-foreground">S</span>
+            <span className="flex min-w-0 flex-col"><span className="truncate text-sm font-semibold text-foreground">Shipflow</span><span className="truncate text-xs text-muted-foreground">Fulfillment workspace</span></span>
+          </Link>
+          <Button variant="ghost" size="icon" className="shrink-0" aria-label="Workspace menu"><ChevronsUpDown /></Button>
         </div>
       </SidebarHeader>
-
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton
-                render={
-                  <Link to="/orders">
-                    <Package />
-                    <span>Orders</span>
-                    <SidebarMenuBadge>16</SidebarMenuBadge>
-                  </Link>
-                }
-              />
-            </SidebarMenuItem>
-
-            <SidebarMenuItem>
-              <SidebarMenuButton render={<Link to="/shipments"><Truck /><span>Shipments</span></Link>} />
-            </SidebarMenuItem>
-
-            <SidebarMenuItem>
-              <SidebarMenuButton render={<Link to="/pickup"><PackageCheck /><span>Ready to Pick</span><SidebarMenuBadge>16</SidebarMenuBadge></Link>} />
-            </SidebarMenuItem>
-
-            <SidebarMenuItem>
-              <SidebarMenuButton render={<Link to="/members"><Users /><span>Members</span></Link>} />
-            </SidebarMenuItem>
-
-            <SidebarMenuItem>
-              <SidebarMenuButton render={<Link to="/addresses"><MapPinHouse /><span>Addresses</span></Link>} />
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarGroup>
-
-        <SidebarGroup>
-          <SidebarGroupLabel>Teamspaces</SidebarGroupLabel>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton render={<Link to="/settings"><Shuffle /><span>Settings</span></Link>} />
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton render={<Link to="/shipping-rules"><Zap /><span>Shipping Rules</span></Link>} />
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton render={<a href="#"><Sparkles /><span>A.I</span></a>} />
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarGroup>
-
-        <SidebarGroup>
-          <SidebarGroupLabel>Actions</SidebarGroupLabel>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton render={<a href="#"><Download /><span>Import</span></a>} />
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton render={<a href="#"><Trash2 /><span>Trash</span></a>} />
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarGroup>
+        <SidebarGroup><SidebarGroupLabel>Workspace</SidebarGroupLabel><SidebarMenu>{primaryNav.map(({ label, href, icon: Icon, badge }) => <SidebarMenuItem key={href}><SidebarMenuButton render={<Link to={href}><Icon /><span>{label}</span></Link>} />{badge ? <SidebarMenuBadge>{badge}</SidebarMenuBadge> : null}</SidebarMenuItem>)}</SidebarMenu></SidebarGroup>
+        <SidebarGroup><SidebarGroupLabel>Configuration</SidebarGroupLabel><SidebarMenu><SidebarMenuItem><SidebarMenuButton render={<Link to="/shipping-rules"><Zap /><span>Shipping rules</span></Link>} /></SidebarMenuItem><SidebarMenuItem><SidebarMenuButton render={<Link to="/settings"><Settings /><span>Settings</span></Link>} /></SidebarMenuItem></SidebarMenu></SidebarGroup>
       </SidebarContent>
-
-      <SidebarFooter>
-        <div className="flex items-center gap-2 rounded-lg px-2 py-1.5">
-          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-muted text-[11px] font-semibold text-muted-foreground">
-            ?
-          </span>
-          <span className="min-w-0 flex-1 truncate text-[13px] text-muted-foreground">
-            Need help?
-          </span>
-          <HelpCircle className="h-4 w-4 shrink-0 text-muted-foreground" strokeWidth={1.5} />
-        </div>
-      </SidebarFooter>
-
+      <SidebarFooter className="border-t"><div className="flex items-center justify-between gap-2 px-2 py-1"><div className="flex min-w-0 items-center gap-2"><Badge variant="outline" className="size-7 justify-center rounded-full p-0">S</Badge><span className="truncate text-xs text-muted-foreground">Connected store</span></div><Button variant="ghost" size="icon" onClick={() => setTheme(isDark ? "light" : "dark")} aria-label="Toggle theme">{isDark ? <Moon /> : <Sun />}</Button></div><Button variant="ghost" className="justify-start gap-2 text-muted-foreground"><CircleHelp /> Help center</Button></SidebarFooter>
       <SidebarRail />
     </Sidebar>
   )
