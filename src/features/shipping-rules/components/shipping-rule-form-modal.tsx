@@ -7,7 +7,7 @@ import {
     BlockStack,
     FormLayout,
     Banner,
-} from "@shopify/polaris";
+} from "@/components/ui/admin-primitives";
 import toast from "react-hot-toast";
 import {
     CONDITION_TYPE_OPTIONS,

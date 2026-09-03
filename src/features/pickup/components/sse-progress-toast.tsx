@@ -1,13 +1,13 @@
 // components/SSEProgressToast.tsx
 import { useState, useEffect } from 'react';
-import { Text, Icon, ProgressBar } from '@shopify/polaris';
+import { Text, Icon, ProgressBar } from '@/components/ui/admin-primitives';
 import {
     CheckCircleIcon,
     AlertCircleIcon,
     XIcon,
     ChevronDownIcon,
     ChevronUpIcon,
-} from '@shopify/polaris-icons';
+} from '@/components/ui/admin-primitives';
 
 interface SSEProgressToastProps {
     status: string;

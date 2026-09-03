@@ -1,5 +1,5 @@
 // @ts-nocheck
-import  { useState } from "react"
+import { useState } from "react"
 import {
   IndexTable,
   Card,
@@ -10,7 +10,7 @@ import {
   Avatar,
   Button,
   Pagination
-} from "@shopify/polaris"
+} from "@/components/ui/admin-primitives"
 
 import { calculateTotal, formatDate } from "../orders.utils"
 import { Order } from "../types/orders.types"
@@ -159,7 +159,7 @@ const OrdersTable = ({ orders, onSelectOrder, pagination, onPageChange }: Orders
           <div style={{ display: 'flex', justifyContent: 'center' }} onClick={(e) => e.stopPropagation()}>
             <Button
               size="slim"
-              variant="primary"
+              // variant="primary"
               onClick={() => {
                 setSelectedOrder(order)
                 setShow(true)
@@ -194,7 +194,7 @@ const OrdersTable = ({ orders, onSelectOrder, pagination, onPageChange }: Orders
         </InlineStack>
       </Box>
 
-      <div className="w-full overflow-x-auto">
+      <div className="w-full overflow-x-auto ">
         <Card padding="0">
           <IndexTable
             resourceName={resourceName}
@@ -214,7 +214,7 @@ const OrdersTable = ({ orders, onSelectOrder, pagination, onPageChange }: Orders
             {rowMarkup}
           </IndexTable>
         </Card>
-            </div>
+      </div>
 
       {pagination.totalPages > 1 && (
         <Box paddingBlockStart="400">

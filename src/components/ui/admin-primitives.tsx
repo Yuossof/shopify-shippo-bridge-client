@@ -1,0 +1,66 @@
+import { Loader2, CheckCircle, AlertCircle, X, ChevronDown, ChevronUp } from "lucide-react"
+import { Card as ShadcnCard, CardContent } from "@/components/ui/card"
+import { Button as ShadcnButton } from "@/components/ui/button"
+import { Badge as ShadcnBadge } from "@/components/ui/badge"
+import { Input } from "@/components/ui/input"
+import { cn } from "@/lib/utils"
+
+type AnyProps = Record<string, any>
+
+export function Card({ children, padding, className, ...props }: AnyProps) {
+  return <ShadcnCard className={cn(padding === "0" && "p-0", className)} {...props}>{children}</ShadcnCard>
+}
+Card.Section = function Section({ children, ...props }: AnyProps) { return <CardContent {...props}>{children}</CardContent> }
+
+export function Box({ children, padding, paddingBlockEnd, paddingBlockStart, background, className, ...props }: AnyProps) {
+  const spacing = padding === "800" ? "p-8" : padding === "400" ? "p-4" : padding === "200" ? "p-2" : ""
+  return <div className={cn(spacing, paddingBlockEnd && "pb-4", paddingBlockStart && "pt-2", background === "bg-surface-secondary" && "bg-muted", className)} {...props}>{children}</div>
+}
+
+export function Text({ children, as: Tag = "span", variant, tone, fontWeight, alignment, className, ...props }: AnyProps) {
+  return <Tag className={cn(variant?.startsWith("heading") && "font-semibold", fontWeight === "bold" && "font-bold", fontWeight === "semibold" && "font-semibold", tone === "subdued" && "text-muted-foreground", tone === "critical" && "text-destructive", alignment === "center" && "text-center", className)} {...props}>{children}</Tag>
+}
+export const InlineStack = ({ children, align, blockAlign, gap, className, ...props }: AnyProps) => <div className={cn("flex flex-wrap", align === "space-between" && "justify-between", align === "end" && "justify-end", align === "center" && "justify-center", blockAlign === "center" && "items-center", gap === "100" && "gap-1", gap === "150" && "gap-1.5", gap === "200" && "gap-2", gap === "300" && "gap-3", gap === "400" && "gap-4", className)} {...props}>{children}</div>
+export const BlockStack = ({ children, gap, className, ...props }: AnyProps) => <div className={cn("flex flex-col", gap === "100" && "gap-1", gap === "200" && "gap-2", gap === "300" && "gap-3", gap === "400" && "gap-4", gap === "500" && "gap-5", className)} {...props}>{children}</div>
+export const InlineGrid = ({ children, columns, className, ...props }: AnyProps) => <div className={cn(columns === 2 && "grid grid-cols-2", "gap-4", className)} {...props}>{children}</div>
+export const Divider = () => <hr className="border-border" />
+export const Bleed = ({ children, ...props }: AnyProps) => <div {...props}>{children}</div>
+
+const badgeVariant = (tone?: string) => tone === "critical" ? "destructive" : tone === "success" ? "default" : tone === "subdued" ? "secondary" : "outline"
+export const Badge = ({ children, tone, className, ...props }: AnyProps) => <ShadcnBadge variant={badgeVariant(tone)} className={className} {...props}>{children}</ShadcnBadge>
+export const Avatar = ({ initials, name }: AnyProps) => <div className="flex size-8 items-center justify-center rounded-full bg-muted text-xs font-semibold">{initials || name?.slice(0, 1) || "?"}</div>
+export const Thumbnail = ({ source, alt, size = "small" }: AnyProps) => <img src={source || undefined} alt={alt} className={cn("rounded object-cover", size === "large" ? "size-16" : "size-8")} />
+
+export function Button({ children, loading, icon: Icon, tone, size, ...props }: AnyProps) {
+  return <ShadcnButton variant={tone === "critical" ? "destructive" : props.variant === "primary" ? "default" : props.variant} size={size === "slim" ? "sm" : size} disabled={loading || props.disabled} {...props}>{loading && <Loader2 className="animate-spin" />} {!loading && Icon && <Icon />}{children}</ShadcnButton>
+}
+export const Spinner = (_props: AnyProps) => <Loader2 className="size-5 animate-spin text-muted-foreground" />
+export const Link = ({ url, children, ...props }: AnyProps) => <a href={url || "#"} target="_blank" rel="noreferrer" className="text-primary underline-offset-2 hover:underline" {...props}>{children}</a>
+export const Banner = ({ title, children }: AnyProps) => <div className="rounded-md border border-destructive/40 bg-destructive/10 p-3 text-sm"><strong>{title}</strong>{children && <div className="mt-1">{children}</div>}</div>
+export const ProgressBar = ({ progress = 15 }: AnyProps) => <div className="h-1.5 overflow-hidden rounded-full bg-muted"><div className="h-full bg-primary transition-all" style={{ width: `${progress}%` }} /></div>
+export const Icon = ({ source: Source, className }: AnyProps) => Source ? <Source className={className} /> : null
+export const CheckCircleIcon = CheckCircle
+export const AlertCircleIcon = AlertCircle
+export const XIcon = X
+export const ChevronDownIcon = ChevronDown
+export const ChevronUpIcon = ChevronUp
+
+export function Modal({ open, onClose, title, children, primaryAction, secondaryActions }: AnyProps) {
+  if (!open) return null
+  return <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onMouseDown={onClose}><div className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-lg border bg-background shadow-xl" onMouseDown={(e) => e.stopPropagation()}><div className="flex items-center justify-between border-b p-4"><h2 className="font-semibold">{title}</h2><Button size="icon" variant="ghost" onClick={onClose}><X /></Button></div><div className="p-4">{children}</div><div className="flex justify-end gap-2 border-t p-4">{secondaryActions?.map((action: AnyProps) => <Button key={action.content} onClick={action.onAction}>{action.content}</Button>)}{primaryAction && <Button onClick={primaryAction.onAction} loading={primaryAction.loading} disabled={primaryAction.disabled}>{primaryAction.content}</Button>}</div></div></div>
+}
+Modal.Section = ({ children, ...props }: AnyProps) => <div {...props}>{children}</div>
+
+export const TextField = ({ label, value, onChange, helpText, ...props }: { label: string; value: string; onChange: (value: string) => void; helpText?: string; [key: string]: any }) => <label className="block space-y-1 text-sm font-medium">{label}<Input value={value} onChange={(e) => onChange(e.target.value)} {...props} />{helpText && <span className="text-xs text-muted-foreground">{helpText}</span>}</label>
+export const Checkbox = ({ label, checked, onChange, helpText }: { label: string; checked: boolean; onChange: (value: boolean) => void; helpText?: string }) => <label className="flex items-start gap-2 text-sm"><input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} /> <span>{label}{helpText && <small className="block text-muted-foreground">{helpText}</small>}</span></label>
+export const FormLayout = ({ children }: AnyProps) => <div className="space-y-4">{children}</div>
+
+export function Select({ label, options, value, onChange, disabled }: { label: string; options: AnyProps[]; value: string; onChange: (value: string) => void; disabled?: boolean }) { return <label className="block space-y-1 text-sm font-medium">{label}<select className="h-8 w-full rounded-md border bg-background px-2 text-sm" value={value} onChange={(e) => onChange(e.target.value)} disabled={disabled}>{options.map((option: AnyProps) => <option key={option.value} value={option.value}>{option.label}</option>)}</select></label> }
+
+export const IndexTable = ({ children, headings }: AnyProps) => <table className="w-full text-sm"><thead><tr className="border-b bg-muted/40">{headings.map((heading: AnyProps) => <th key={heading.title} className="p-3 text-left font-medium">{heading.title}</th>)}</tr></thead><tbody>{children}</tbody></table>
+IndexTable.Row = ({ children, onClick, ...props }: AnyProps) => <tr onClick={onClick} className="border-b transition-colors hover:bg-muted/50" {...props}>{children}</tr>
+IndexTable.Cell = ({ children, ...props }: AnyProps) => <td className="p-3 align-middle" {...props}>{children}</td>
+
+export const Pagination = ({ hasPrevious, onPrevious, hasNext, onNext, label }: AnyProps) => <div className="flex items-center gap-2"><Button size="sm" variant="outline" disabled={!hasPrevious} onClick={onPrevious}>Previous</Button><span className="text-sm text-muted-foreground">{label}</span><Button size="sm" variant="outline" disabled={!hasNext} onClick={onNext}>Next</Button></div>
+export const EmptyState = ({ heading, children, action, footerContent }: AnyProps) => <div className="space-y-3 p-8 text-center"><h3 className="font-semibold">{heading}</h3>{children}<p className="text-sm text-muted-foreground">{footerContent}</p>{action && <Button onClick={action.onAction}>{action.content}</Button>}</div>
+export const CardContentPlaceholder = CardContent

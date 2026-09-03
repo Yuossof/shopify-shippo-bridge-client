@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { HandledError } from '@/lib/app-error'
 import toast from 'react-hot-toast'
-import { Banner, Button, InlineStack, Text } from '@shopify/polaris'
+import { Banner, Button, InlineStack, Text } from '@/components/ui/admin-primitives'
 import PickupTable from './pickup-table'
 import { getPickupsService } from '../services/get-pickups'
 

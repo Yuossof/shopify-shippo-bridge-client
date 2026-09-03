@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BlockStack, InlineStack, Text } from "@shopify/polaris";
+import { BlockStack, InlineStack, Text } from "@/components/ui/admin-primitives";
 import toast from "react-hot-toast";
 import ShippingRulesTable from "./shipping-rules-table";
 import ShippingRuleFormModal from "./shipping-rule-form-modal";

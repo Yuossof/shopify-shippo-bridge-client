@@ -11,7 +11,7 @@ import {
   Box,
   BlockStack,
   IndexTableProps
-} from "@shopify/polaris"
+} from "@/components/ui/admin-primitives"
 
 interface ShopifyLineItem {
   shopifyLineItemId: number

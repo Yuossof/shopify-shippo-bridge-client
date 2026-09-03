@@ -14,7 +14,7 @@ import {
     Button,
     BlockStack,
     Banner,
-} from '@shopify/polaris';
+} from '@/components/ui/admin-primitives';
 import SSEProgressToast from './sse-progress-toast';
 import { FailedShipmentsAlert } from './failed-shipments-alert';
 

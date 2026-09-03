@@ -25,20 +25,20 @@ function App() {
 
   return (
     <ThemeProvider defaultTheme="system" storageKey="shadcn-ui-theme">
-      <div className="min-h-screen bg-background text-foreground">
-        <Toaster position="top-right" reverseOrder={false} />
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/orders" element={<Orders />} />
-            <Route path="/shipments" element={<ShipmentsPage />} />
-            <Route path="/pickup" element={<PickupPage />} />
-            <Route path="/addresses" element={<AddressesPage />} />
-            <Route path="/settings" element={<SettingsPage />} />
-            <Route path="/shipping-rules" element={<ShippingRulesPage />} />
-          </Route>
-        </Routes>
-      </div>
+        <div className="min-h-screen bg-background text-foreground">
+          <Toaster position="top-right" reverseOrder={false} />
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/orders" element={<Orders />} />
+              <Route path="/shipments" element={<ShipmentsPage />} />
+              <Route path="/pickup" element={<PickupPage />} />
+              <Route path="/addresses" element={<AddressesPage />} />
+              <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/shipping-rules" element={<ShippingRulesPage />} />
+            </Route>
+          </Routes>
+        </div>
     </ThemeProvider>
   )
 }

@@ -7,8 +7,8 @@ import {
     InlineStack,
     EmptyState,
     Spinner,
-} from "@shopify/polaris";
-import { PlusIcon } from "@shopify/polaris-icons";
+} from "@/components/ui/admin-primitives";
+import { Plus } from "lucide-react";
 import { GripVertical } from "lucide-react";
 import {
     CONDITION_TYPE_OPTIONS,
@@ -219,7 +219,7 @@ const ShippingRulesTable = ({
                 <Button
                     variant="primary"
                     onClick={onCreate}
-                    icon={PlusIcon}
+                    icon={Plus}
                     disabled={disabled}
                 >
                     Add Rule

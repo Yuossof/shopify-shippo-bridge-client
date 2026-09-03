@@ -10,7 +10,7 @@ import {
   InlineStack,
   Bleed,
   Divider
-} from "@shopify/polaris"
+} from "@/components/ui/admin-primitives"
 
 import { Order } from "../types/orders.types"
 import { createShipmentService } from "@/services/shippo/shipments"

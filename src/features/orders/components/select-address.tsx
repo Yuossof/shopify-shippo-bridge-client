@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Select } from "@shopify/polaris";
+import { Select } from "@/components/ui/admin-primitives";
 import { IAddress } from "@/dto/shippo/address";
 import { axiosInstance } from "@/lib/axios";
 

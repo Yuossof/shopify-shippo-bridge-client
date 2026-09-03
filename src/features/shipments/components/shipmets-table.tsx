@@ -17,8 +17,8 @@ import {
   Banner,
   Divider,
   Button,
-} from '@shopify/polaris';
-import { LabelPrinterIcon } from '@shopify/polaris-icons';
+} from '@/components/ui/admin-primitives';
+import { Printer as LabelPrinterIcon } from 'lucide-react';
 import { OrderLineItem } from '@/shared/types/order';
 
 interface PaginationInfo {
