@@ -76,3 +76,102 @@
   html { @apply font-sans bg-background; }
   body { @apply min-h-screen bg-background text-foreground antialiased; }
 }
+
+/* Polaris is retained only for Shopify's action surfaces. Keep its legacy
+   primitives visually aligned with the rest of the Tailwind design system. */
+.Polaris-Icon {
+  width: 1.125rem !important;
+  height: 1.125rem !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.Polaris-Icon svg,
+.Polaris-Icon img {
+  width: 1.125rem !important;
+  height: 1.125rem !important;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.Polaris-Button .Polaris-Icon {
+  width: 1rem !important;
+  height: 1rem !important;
+}
+
+.Polaris-Button .Polaris-Icon svg,
+.Polaris-Button .Polaris-Icon img {
+  width: 1rem !important;
+  height: 1rem !important;
+}
+
+.Polaris-IndexTable {
+  background: var(--card);
+  color: var(--card-foreground);
+  font-size: 0.8125rem;
+}
+
+.Polaris-IndexTable__TableCell,
+.Polaris-IndexTable__TableHeading {
+  padding: 0.875rem 1rem !important;
+  vertical-align: middle;
+}
+
+.Polaris-IndexTable__TableHeading {
+  background: var(--muted);
+  color: var(--muted-foreground);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.Polaris-IndexTable__TableRow:not(.Polaris-IndexTable__TableRow--hovered):hover,
+.Polaris-IndexTable__TableRow:hover {
+  background: color-mix(in oklch, var(--accent), transparent 45%);
+}
+
+.Polaris-IndexTable__TableCell {
+  border-bottom-color: var(--border);
+  line-height: 1.45;
+}
+
+.Polaris-Text--bodyMd,
+.Polaris-Text--bodySm,
+.Polaris-Text--bodyXs {
+  color: inherit;
+}
+
+.Polaris-Badge {
+  border-radius: 999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  padding: 0 0.5rem;
+}
+
+.Polaris-Card {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 2px color-mix(in oklch, var(--foreground), transparent 94%);
+}
+
+.Polaris-Link {
+  color: var(--primary);
+  font-weight: 500;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+.Polaris-IndexTable__TableCell:first-child {
+  font-weight: 500;
+}
+
+@media (max-width: 640px) {
+  .Polaris-IndexTable__TableCell,
+  .Polaris-IndexTable__TableHeading {
+    padding: 0.75rem !important;
+  }
+}
