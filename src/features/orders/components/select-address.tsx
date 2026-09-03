@@ -41,7 +41,7 @@ export function SelectAddress({ selectedAddress, setSelectedAddress }: Props) {
     <Select
       label="Select Address"
       options={options}
-      onChange={(value) => setSelectedAddress(value)}
+      onChange={(value: string) => setSelectedAddress(value)}
       value={selectedAddress}
       disabled={isLoading}
     />

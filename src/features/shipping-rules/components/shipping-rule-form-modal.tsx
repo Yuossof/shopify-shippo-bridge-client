@@ -121,7 +121,7 @@ const ShippingRuleFormModal = ({
                         <TextField
                             label="Rule Name"
                             value={form.name}
-                            onChange={(value) =>
+                            onChange={(value: string) =>
                                 setForm((prev) => ({ ...prev, name: value }))
                             }
                             placeholder="e.g. Express for orders over $50"
@@ -131,7 +131,7 @@ const ShippingRuleFormModal = ({
                         <Select
                             label="Condition"
                             value={form.conditionType}
-                            onChange={(value) =>
+                            onChange={(value: string) =>
                                 setForm((prev) => ({
                                     ...prev,
                                     conditionType: value as RuleConditionType,
@@ -151,7 +151,7 @@ const ShippingRuleFormModal = ({
                                         : "Condition Value ($)"
                                 }
                                 value={form.conditionValue}
-                                onChange={(value) =>
+                                onChange={(value: string) =>
                                     setForm((prev) => ({ ...prev, conditionValue: value }))
                                 }
                                 type="number"
@@ -162,7 +162,7 @@ const ShippingRuleFormModal = ({
                         <TextField
                             label="Max Delivery Days"
                             value={form.actionMaxDeliveryDays}
-                            onChange={(value) =>
+                            onChange={(value: string) =>
                                 setForm((prev) => ({
                                     ...prev,
                                     actionMaxDeliveryDays: value,
@@ -176,8 +176,8 @@ const ShippingRuleFormModal = ({
                         <Checkbox
                             label="Set as fallback default rule"
                             checked={form.isFallbackDefault}
-                            onChange={(value) =>
-                                setForm((prev) => ({ ...prev, isFallbackDefault: value }))
+onChange={(value: boolean) =>
+                                    setForm((prev) => ({ ...prev, isFallbackDefault: value }))
                             }
                             helpText="Applied when no conditional rule matches the order."
                         />
