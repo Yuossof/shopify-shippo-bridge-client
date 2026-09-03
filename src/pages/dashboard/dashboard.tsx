@@ -5,10 +5,10 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 const workspaces = [
-  { title: 'Orders', description: 'Review incoming orders and prepare them for fulfillment.', icon: Package, href: '/orders', status: '16 awaiting action' },
-  { title: 'Shipments', description: 'Track labels, delivery progress, and shipment history.', icon: Truck, href: '/shipments', status: 'Live tracking' },
-  { title: 'Ready to pick', description: 'Move prepared orders into your pickup workflow.', icon: PackageCheck, href: '/pickup', status: '16 ready' },
-  { title: 'Addresses', description: 'Keep saved shipping and pickup locations organized.', icon: MapPin, href: '/addresses', status: 'Address book' },
+  { title: 'Orders', description: 'Review incoming orders and prepare them for fulfillment.', icon: Package, href: '/orders', status: '16 awaiting action', tone: 'info' },
+  { title: 'Shipments', description: 'Track labels, delivery progress, and shipment history.', icon: Truck, href: '/shipments', status: 'Live tracking', tone: 'violet' },
+  { title: 'Ready to pick', description: 'Move prepared orders into your pickup workflow.', icon: PackageCheck, href: '/pickup', status: '16 ready', tone: 'success' },
+  { title: 'Addresses', description: 'Keep saved shipping and pickup locations organized.', icon: MapPin, href: '/addresses', status: 'Address book', tone: 'warning' },
 ]
 
 export default function Dashboard() {
@@ -24,9 +24,9 @@ export default function Dashboard() {
       </section>
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" aria-label="Workspace overview">
-        {workspaces.map(({ title, description, icon: Icon, href, status }) => (
+        {workspaces.map(({ title, description, icon: Icon, href, status, tone }) => (
           <Card key={title} className="surface-elevated group transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-lg">
-            <CardHeader className="gap-4"><div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary"><Icon /></div><div className="flex flex-col gap-1"><CardTitle className="text-base">{title}</CardTitle><CardDescription className="leading-5">{description}</CardDescription></div></CardHeader>
+            <CardHeader className="gap-4"><div className={`flex size-10 items-center justify-center rounded-xl ${tone === 'success' ? 'bg-success/10 text-success-foreground' : tone === 'violet' ? 'bg-violet/10 text-violet-foreground' : tone === 'warning' ? 'bg-warning/10 text-warning-foreground' : 'bg-info/10 text-info-foreground'}`}><Icon /></div><div className="flex flex-col gap-1"><CardTitle className="text-base">{title}</CardTitle><CardDescription className="leading-5">{description}</CardDescription></div></CardHeader>
             <CardContent className="flex items-center justify-between gap-3 pt-0"><span className="text-sm text-muted-foreground">{status}</span><Link to={href} aria-label={`Open ${title}`}><Button variant="ghost" size="icon" aria-label={`Open ${title}`}><ArrowUpRight /></Button></Link></CardContent>
           </Card>
         ))}
