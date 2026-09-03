@@ -20,7 +20,7 @@ export default function Dashboard() {
           <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">Everything in motion, at a glance.</h1>
           <p className="text-pretty leading-6 text-muted-foreground">A focused command center for turning storefront orders into smooth, trackable deliveries.</p>
         </div>
-        <Button asChild className="w-full sm:w-fit"><Link to="/orders">Review orders <ArrowUpRight data-icon="inline-end" /></Link></Button>
+        <Link to="/orders" className="w-full sm:w-fit"><Button className="w-full">Review orders <ArrowUpRight data-icon="inline-end" /></Button></Link>
       </section>
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" aria-label="Workspace overview">
@@ -30,14 +30,14 @@ export default function Dashboard() {
               <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary"><Icon /></div>
               <div className="flex flex-col gap-1"><CardTitle className="text-base">{title}</CardTitle><CardDescription className="leading-5">{description}</CardDescription></div>
             </CardHeader>
-            <CardContent className="flex items-center justify-between gap-3 pt-0"><span className="text-sm text-muted-foreground">{status}</span><Button variant="ghost" size="icon" asChild aria-label={`Open ${title}`}><Link to={href}><ArrowUpRight /></Link></Button></CardContent>
+            <CardContent className="flex items-center justify-between gap-3 pt-0"><span className="text-sm text-muted-foreground">{status}</span><Link to={href} aria-label={`Open ${title}`}><Button variant="ghost" size="icon" aria-label={`Open ${title}`}><ArrowUpRight /></Button></Link></CardContent>
           </Card>
         ))}
       </section>
 
       <section className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
-        <Card><CardHeader><CardTitle>Today&apos;s workflow</CardTitle><CardDescription>A calm, clear path through your fulfillment queue.</CardDescription></CardHeader><CardContent className="flex flex-col gap-4"><div className="flex items-center justify-between border-b pb-4"><span className="text-sm">Orders to review</span><span className="font-semibold">16</span></div><div className="flex items-center justify-between border-b pb-4"><span className="text-sm">Shipments in transit</span><span className="font-semibold">Active</span></div><div className="flex items-center justify-between"><span className="text-sm">Next step</span><Button variant="link" className="h-auto p-0" asChild><Link to="/pickup">Open pickup queue <ArrowUpRight data-icon="inline-end" /></Link></Button></div></CardContent></Card>
-        <Card className="bg-primary text-primary-foreground"><CardHeader><CardTitle>Keep your rules close</CardTitle><CardDescription className="text-primary-foreground/75">Automate the repetitive decisions with shipping rules that fit your operation.</CardDescription></CardHeader><CardContent><Button variant="secondary" asChild><Link to="/shipping-rules">Manage rules <ArrowUpRight data-icon="inline-end" /></Link></Button></CardContent></Card>
+        <Card><CardHeader><CardTitle>Today&apos;s workflow</CardTitle><CardDescription>A calm, clear path through your fulfillment queue.</CardDescription></CardHeader><CardContent className="flex flex-col gap-4"><div className="flex items-center justify-between border-b pb-4"><span className="text-sm">Orders to review</span><span className="font-semibold">16</span></div><div className="flex items-center justify-between border-b pb-4"><span className="text-sm">Shipments in transit</span><span className="font-semibold">Active</span></div><div className="flex items-center justify-between"><span className="text-sm">Next step</span><Link to="/pickup" className="text-sm font-medium text-primary underline-offset-4 hover:underline">Open pickup queue <ArrowUpRight data-icon="inline-end" /></Link></div></CardContent></Card>
+        <Card className="bg-primary text-primary-foreground"><CardHeader><CardTitle>Keep your rules close</CardTitle><CardDescription className="text-primary-foreground/75">Automate the repetitive decisions with shipping rules that fit your operation.</CardDescription></CardHeader><CardContent><Link to="/shipping-rules"><Button variant="secondary">Manage rules <ArrowUpRight data-icon="inline-end" /></Button></Link></CardContent></Card>
       </section>
     </main>
   )

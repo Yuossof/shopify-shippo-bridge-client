@@ -1,4 +1,4 @@
-import {  useState } from 'react'
+import {  useState, type FormEvent } from 'react'
 import ShippoApiKeyForm from './shippo-api-key-form';
 
 import { toast } from 'react-hot-toast';
@@ -12,7 +12,7 @@ const Wrapper = () => {
   const [isLoading, setIsLoading] = useState(false)
 
 
-  const handleStoreApiKey = async (e) => {
+  const handleStoreApiKey = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
       setIsLoading(true)
